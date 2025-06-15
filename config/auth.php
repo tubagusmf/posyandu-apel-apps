@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'kader' => [
+            'driver' => 'session',
+            'provider' => 'kaders',
+        ],
+
+        'bidan' => [
+            'driver' => 'session',
+            'provider' => 'bidans',
+        ],
     ],
 
     /*
@@ -65,10 +75,16 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'kaders' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Kader::class, // <- ini harus cocok dengan modelnya
+        ],
+
+        'bidans' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Bidan::class, // <- ini harus cocok dengan modelnya
+        ],
+
     ],
 
     /*

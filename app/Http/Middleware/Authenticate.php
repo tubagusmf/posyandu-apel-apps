@@ -12,6 +12,14 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+        if ($request->is('dashboard-kader') || $request->is('kader/*')) {
+            return route('login.kader'); // ← sesuaikan dengan route yang kamu buat
+        }
+
+        if ($request->is('dashboard-bidan') || $request->is('bidan/*')) {
+            return route('login.bidan'); // ← sesuaikan dengan route yang kamu buat
+        }
+    
+        return route('login');
     }
 }
