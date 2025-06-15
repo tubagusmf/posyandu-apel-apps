@@ -77,7 +77,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="icon-menu.html">
+                  <a href="{{ route('kader.data-ibu') }}">
                     <span class="sub-item">Data Ibu</span>
                   </a>
                 </li>
