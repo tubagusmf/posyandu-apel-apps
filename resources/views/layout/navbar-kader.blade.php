@@ -26,7 +26,7 @@
       <div class="sidebar-content">
         <ul class="nav nav-secondary">
           <li class="nav-item">
-              <a href="widgets.html">
+              <a href="{{ route('dashboard.kader') }}">
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
@@ -67,12 +67,12 @@
             <div class="collapse" id="sidebarLayouts">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="sidebar-style-2.html">
+                  <a href="{{ route('kader.data-kader') }}">
                     <span class="sub-item">Data Kader</span>
                   </a>
                 </li>
                 <li>
-                  <a href="icon-menu.html">
+                  <a href="{{ route('kader.data-bidan') }}">
                     <span class="sub-item">Data Bidan</span>
                   </a>
                 </li>
@@ -82,12 +82,12 @@
                   </a>
                 </li>
                 <li>
-                  <a href="icon-menu.html">
+                  <a href="{{ route('kader.data-anak') }}">
                     <span class="sub-item">Data Bayi & Balita</span>
                   </a>
                 </li>
                 <li>
-                  <a href="icon-menu.html">
+                  <a href="{{ route('kader.data-ibu-hamil') }}">
                     <span class="sub-item">Data Ibu Hamil</span>
                   </a>
                 </li>

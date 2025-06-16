@@ -29,7 +29,7 @@
                     <input type="number" name="nik_ibu" class="form-control" id="nik" placeholder="Nik Ibu"/>
                   </div>
                   <div class="form-group">
-                    <label for="name">Nama Ibu</label>
+                    <label for="name">Nama Lengkap</label>
                     <input type="text" name="nama_ibu" class="form-control" id="name" placeholder="Nama Lengkap"/>
                   </div>
                   <div class="form-group">

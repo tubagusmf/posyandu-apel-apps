@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <a href="{{ route('kader.data-ibu.create') }}" class="btn btn-primary">Tambah Data</a>
+              <a href="{{ route('kader.data-anak.create') }}" class="btn btn-primary">Tambah Data</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -20,27 +20,25 @@
                 >
                   <thead>
                     <tr>
-                      <th>NIK Ibu</th>
-                      <th>Nama Ibu</th>
+                      <th>NIK Anak</th>
+                      <th>Nama Anak</th>
                       <th>Tanggal Lahir</th>
                       <th>Usia</th>
-                      <th>Telepon</th>
-                      <th>Alamat</th>
+                      <th>Jenis Kelamin</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($ibu as $item)
+                    @foreach ($anak as $item)
                     <tr>
-                      <td>{{ $item->nik_ibu }}</td>
-                      <td>{{ $item->nama_ibu }}</td>
+                      <td>{{ $item->nik_anak }}</td>
+                      <td>{{ $item->nama_anak }}</td>
                       <td>{{ $item->tgl_lahir }}</td>
                       <td>{{ $item->usia }} tahun</td>
-                      <td>{{ $item->telepon }}</td>
-                      <td>{{ $item->alamat }}</td>
+                      <td>{{ $item->jenis_kelamin }}</td>
                       <td>
-                        <a href="{{ route('kader.data-ibu.edit', $item->nik_ibu) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                        <form action="{{ route('kader.data-ibu.destroy', $item->nik_ibu) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('kader.data-anak.edit', $item->nik_anak) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                        <form action="{{ route('kader.data-anak.destroy', $item->nik_anak) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">

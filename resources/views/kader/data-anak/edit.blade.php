@@ -22,34 +22,33 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="{{ route('kader.data-ibu.update', $ibu->nik_ibu) }}" method="POST">
+                <form action="{{ route('kader.data-anak.update', $anak->nik_anak) }}" method="POST">
                   @csrf
                   @method('PUT')
                   <div class="form-group">
-                    <label for="nik">Nik Ibu</label>
-                    <input type="number" name="nik_ibu" class="form-control" id="nik" placeholder="Nik Ibu" value="{{ old('nik_ibu', $ibu->nik_ibu) }}"/>
+                    <label for="nik">Nik Anak</label>
+                    <input type="number" name="nik_anak" class="form-control" id="nik" placeholder="Nik anak" value="{{ old('nik_anak', $anak->nik_anak) }}"/>
                   </div>
                   <div class="form-group">
                     <label for="name">Nama Lengkap</label>
-                    <input type="text" name="nama_ibu" class="form-control" id="name" placeholder="Nama Lengkap" value="{{ old('nama_ibu', $ibu->nama_ibu) }}"/>
+                    <input type="text" name="nama_anak" class="form-control" id="name" placeholder="Nama Lengkap" value="{{ old('nama_anak', $anak->nama_anak) }}"/>
                   </div>
                   <div class="form-group">
                     <label for="tgl_lahir">Tanggal Lahir</label>
-                    <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" value="{{ old('tgl_lahir', $ibu->tgl_lahir) }}"/>
+                    <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" value="{{ old('tgl_lahir', $anak->tgl_lahir) }}"/>
                   </div>
                   <div class="form-group">
-                    <label for="telepon">Nomor Telepon</label>
-                    <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Nomor Telepon" value="{{ old('telepon', $ibu->telepon) }}"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Alamat Lengkap">{{ old('alamat', $ibu->alamat) }}</textarea>
-                  </div>
+                    <label for="telepon">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
+                        <option value="Laki-laki" {{ $anak->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="Perempuan" {{ $anak->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                    </select>
+                </div>                
               </div>
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="{{ route('kader.data-ibu') }}" class="btn btn-danger">Cancel</a>
+              <a href="{{ route('kader.data-anak') }}" class="btn btn-danger">Cancel</a>
             </div>
             </form>     
           </div>

@@ -22,34 +22,30 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="{{ route('kader.data-ibu.update', $ibu->nik_ibu) }}" method="POST">
+                <form action="{{ route('kader.data-bidan.update', $list_bidan->nik_bidan) }}" method="POST">
                   @csrf
                   @method('PUT')
                   <div class="form-group">
-                    <label for="nik">Nik Ibu</label>
-                    <input type="number" name="nik_ibu" class="form-control" id="nik" placeholder="Nik Ibu" value="{{ old('nik_ibu', $ibu->nik_ibu) }}"/>
+                    <label for="nik">Nik bidan</label>
+                    <input type="number" name="nik_bidan" class="form-control" id="nik" placeholder="Nik bidan" value="{{ old('nik_bidan', $list_bidan->nik_bidan) }}"/>
                   </div>
                   <div class="form-group">
                     <label for="name">Nama Lengkap</label>
-                    <input type="text" name="nama_ibu" class="form-control" id="name" placeholder="Nama Lengkap" value="{{ old('nama_ibu', $ibu->nama_ibu) }}"/>
+                    <input type="text" name="nama_bidan" class="form-control" id="name" placeholder="Nama Lengkap" value="{{ old('nama_bidan', $list_bidan->nama_bidan) }}"/>
                   </div>
                   <div class="form-group">
-                    <label for="tgl_lahir">Tanggal Lahir</label>
-                    <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir" value="{{ old('tgl_lahir', $ibu->tgl_lahir) }}"/>
-                  </div>
+                    <label for="name">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Username" value="{{ old('username', $list_bidan->username) }}"/>
+                  </div>   
                   <div class="form-group">
-                    <label for="telepon">Nomor Telepon</label>
-                    <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Nomor Telepon" value="{{ old('telepon', $ibu->telepon) }}"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Alamat Lengkap">{{ old('alamat', $ibu->alamat) }}</textarea>
-                  </div>
+                    <label for="name">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="password"/>
+                  </div>             
               </div>
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="{{ route('kader.data-ibu') }}" class="btn btn-danger">Cancel</a>
+              <a href="{{ route('kader.data-bidan') }}" class="btn btn-danger">Cancel</a>
             </div>
             </form>     
           </div>

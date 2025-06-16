@@ -34,7 +34,7 @@ class DataIbuController extends Controller
             'nama_ibu' => 'required|string|max:100',
             'tgl_lahir' => 'required|date',
             'telepon' => 'required|string|max:15',
-            'alamat' => 'required|string',
+            'alamat' => 'required',
         ]);
 
         Ibu::create($request->all());
@@ -64,7 +64,7 @@ class DataIbuController extends Controller
             'nama_ibu' => 'required|string|max:100',
             'tgl_lahir' => 'required|date',
             'telepon' => 'required|string|max:15',
-            'alamat' => 'required|string',
+            'alamat' => 'required',
         ]);
 
         $ibu->update($request->all());
