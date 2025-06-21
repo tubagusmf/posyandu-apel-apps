@@ -40,13 +40,13 @@
                     <label for="name">Nomor Telepon</label>
                     <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Nomor Telepon"/>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label for="telepon">Kondisi</label>
                     <select name="kondisi" class="form-control" id="kondisi">
                       <option value="Baik">Baik</option>
                       <option value="Kurang Baik">Kurang Baik</option>
                     </select>
-                  </div>
+                  </div> --}}
                   <div class="form-group">
                     <label for="alamat">Alamat</label>
                     <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Alamat Lengkap"></textarea>
@@ -55,7 +55,7 @@
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="{{ route('kader.data-anak') }}" class="btn btn-danger">Cancel</a>
+              <a href="{{ route('kader.data-ibu-hamil') }}" class="btn btn-danger">Cancel</a>
             </div>
             </form>     
           </div>

@@ -77,11 +77,6 @@
                   </a>
                 </li>
                 <li>
-                  <a href="{{ route('kader.data-ibu') }}">
-                    <span class="sub-item">Data Ibu</span>
-                  </a>
-                </li>
-                <li>
                   <a href="{{ route('kader.data-anak') }}">
                     <span class="sub-item">Data Bayi & Balita</span>
                   </a>
@@ -103,12 +98,12 @@
             <div class="collapse" id="forms">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="forms/forms.html">
+                  <a href="{{ asset('kader/layanan-balita') }}">
                     <span class="sub-item">Bayi & Balita</span>
                   </a>
                 </li>
                 <li>
-                  <a href="forms/forms.html">
+                  <a href="{{ asset('kader/layanan-ibu-hamil') }}">
                     <span class="sub-item">Ibu Hamil</span>
                   </a>
                 </li>

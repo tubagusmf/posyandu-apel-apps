@@ -10,6 +10,8 @@ use App\Http\Controllers\Kader\DataAnakController;
 use App\Http\Controllers\Kader\DataIbuHamilController;
 use App\Http\Controllers\Kader\DataKaderController;
 use App\Http\Controllers\Kader\DataBidanController;
+use App\Http\Controllers\Kader\LayananBalitaController;
+use App\Http\Controllers\Kader\LayananIbuHamilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,4 +111,26 @@ Route::middleware('auth:kader')->group(function () {
     Route::get('/kader/data-bidan/{list_bidan}/edit', [DataBidanController::class, 'edit'])->name('kader.data-bidan.edit');
     Route::put('/kader/data-bidan/{list_bidan}', [DataBidanController::class, 'update'])->name('kader.data-bidan.update');
     Route::delete('/kader/data-bidan/{list_bidan}', [DataBidanController::class, 'destroy'])->name('kader.data-bidan.destroy');
+});
+
+//Route Layanan Balita
+Route::middleware('auth:kader')->group(function () {
+    Route::get('/kader/layanan-balita', [LayananBalitaController::class, 'index'])->name('kader.layanan-balita');
+    Route::get('/kader/layanan-balita/create', [LayananBalitaController::class, 'create'])->name('kader.layanan-balita.create');
+    Route::post('/kader/layanan-balita', [LayananBalitaController::class, 'store'])->name('kader.layanan-balita.store');
+    Route::get('/kader/layanan-balita/{layanan_balita}', [LayananBalitaController::class, 'show'])->name('kader.layanan-balita.show');
+    Route::get('/kader/layanan-balita/{layanan_balita}/edit', [LayananBalitaController::class, 'edit'])->name('kader.layanan-balita.edit');
+    Route::put('/kader/layanan-balita/{layanan_balita}', [LayananBalitaController::class, 'update'])->name('kader.layanan-balita.update');
+    Route::delete('/kader/layanan-balita/{layanan_balita}', [LayananBalitaController::class, 'destroy'])->name('kader.layanan-balita.destroy');
+});
+
+//Route Layanan Ibu Hamil
+Route::middleware('auth:kader')->group(function () {
+    Route::get('/kader/layanan-ibu-hamil', [LayananIbuHamilController::class, 'index'])->name('kader.layanan-ibu-hamil');
+    Route::get('/kader/layanan-ibu-hamil/create', [LayananIbuHamilController::class, 'create'])->name('kader.layanan-ibu-hamil.create');
+    Route::post('/kader/layanan-ibu-hamil', [LayananIbuHamilController::class, 'store'])->name('kader.layanan-ibu-hamil.store');
+    Route::get('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'show'])->name('kader.layanan-ibu-hamil.show');
+    Route::get('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}/edit', [LayananIbuHamilController::class, 'edit'])->name('kader.layanan-ibu-hamil.edit');
+    Route::put('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'update'])->name('kader.layanan-ibu-hamil.update');
+    Route::delete('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'destroy'])->name('kader.layanan-ibu-hamil.destroy');
 });

@@ -34,7 +34,6 @@ class DataIbuHamilController extends Controller
             'nama_ibu_hamil' => 'required|string|max:100',
             'tgl_lahir' => 'required|date',
             'telepon' => 'required',
-            'kondisi' => 'required|string',
             'alamat' => 'required',
         ]);
 
@@ -65,7 +64,6 @@ class DataIbuHamilController extends Controller
             'nama_ibu_hamil' => 'required|string|max:100',
             'tgl_lahir' => 'required|date',
             'telepon' => 'required',
-            'kondisi' => 'required|string',
             'alamat' => 'required',
         ]);
 

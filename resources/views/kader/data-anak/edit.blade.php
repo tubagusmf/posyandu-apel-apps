@@ -30,8 +30,12 @@
                     <input type="number" name="nik_anak" class="form-control" id="nik" placeholder="Nik anak" value="{{ old('nik_anak', $anak->nik_anak) }}"/>
                   </div>
                   <div class="form-group">
-                    <label for="name">Nama Lengkap</label>
-                    <input type="text" name="nama_anak" class="form-control" id="name" placeholder="Nama Lengkap" value="{{ old('nama_anak', $anak->nama_anak) }}"/>
+                    <label for="name">Nama Lengkap Anak</label>
+                    <input type="text" name="nama_anak" class="form-control" id="name" placeholder="Nama Lengkap Anak" value="{{ old('nama_anak', $anak->nama_anak) }}"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Nama Lengkap Ibu</label>
+                    <input type="text" name="nama_ibu" class="form-control" id="name" placeholder="Nama Lengkap Ibu" value="{{ old('nama_ibu', $anak->nama_ibu) }}"/>
                   </div>
                   <div class="form-group">
                     <label for="tgl_lahir">Tanggal Lahir</label>

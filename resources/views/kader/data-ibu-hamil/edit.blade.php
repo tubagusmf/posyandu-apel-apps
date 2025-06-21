@@ -41,13 +41,13 @@
                     <label for="telepon">Nomor Telepon</label>
                     <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Nomor Telepon" value="{{ old('telepon', $ibuHamil->telepon) }}"/>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label for="telepon">Kondisi</label>
                     <select name="kondisi" class="form-control" id="kondisi">
                         <option value="Baik" {{ $ibuHamil->kondisi == 'Baik' ? 'selected' : '' }}>Baik</option>
                         <option value="Kurang Baik" {{ $ibuHamil->kondisi == 'Kurang Baik' ? 'selected' : '' }}>Kurang Baik</option>
                     </select>
-                </div>
+                  </div> --}}
                   <div class="form-group">
                     <label for="alamat">Alamat</label>
                     <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Alamat Lengkap">{{ old('alamat', $ibuHamil->alamat) }}</textarea>

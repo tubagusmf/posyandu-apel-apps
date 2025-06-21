@@ -54,6 +54,36 @@
 <!-- Kaiadmin DEMO methods, don't include it in your project! -->
 <script src="{{ asset('template-admin') }}/assets/js/setting-demo.js"></script>
 <script src="{{ asset('template-admin') }}/assets/js/demo.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#nik_anak').select2({
+      placeholder: "-- Pilih Nama Anak --",
+      allowClear: true
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#nik_ibu_hamil').select2({
+      placeholder: "-- Pilih Nama Ibu --",
+      allowClear: true
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#usia_hamil').select2({
+      placeholder: "-- Pilih Usia Hamil --",
+      allowClear: true
+    });
+  });
+</script>
+
 <script>
 $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
   type: "line",

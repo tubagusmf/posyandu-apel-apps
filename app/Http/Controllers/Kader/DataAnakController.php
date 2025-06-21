@@ -31,7 +31,8 @@ class DataAnakController extends Controller
     {
         $request->validate([
             'nik_anak' => 'required|max:16|unique:tbl_data_bayi_balita,nik_anak',
-            'nama_anak' => 'required|string|max:100',
+            'nama_anak' => 'required|string',
+            'nama_ibu' => 'required|string',
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string',
         ]);
@@ -60,7 +61,8 @@ class DataAnakController extends Controller
     {
         $request->validate([
             'nik_anak' => 'required|string|max:16|unique:tbl_data_bayi_balita,nik_anak,' . $anak->nik_anak . ',nik_anak',
-            'nama_anak' => 'required|string|max:100',
+            'nama_anak' => 'required|string',
+            'nama_ibu' => 'required|string',
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string',
         ]);

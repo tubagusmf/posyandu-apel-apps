@@ -22,36 +22,39 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="{{ route('kader.data-anak.store') }}" method="POST">
+                <form action="{{ route('kader.layanan-ibu-hamil.store') }}" method="POST">
                   @csrf
                   <div class="form-group">
-                    <label for="nik">Nik Anak</label>
-                    <input type="number" name="nik_anak" class="form-control" id="nik" placeholder="Nik Anak"/>
+                    <label for="nik_ibu_hamil">Nama Ibu</label>
+                    <select name="nik_ibu_hamil" class="form-control" id="nik_ibu_hamil" required>
+                      <option value="">-- Pilih Nama Ibu --</option>
+                      @foreach($ibuList as $ibuHamil)
+                        <option value="{{ $ibuHamil->nik_ibu_hamil }}">{{ $ibuHamil->nama_ibu_hamil }}</option>
+                      @endforeach
+                    </select>
+                  </div>              
+                  <div class="form-group">
+                    <label for="tensi">Tensi Badan (cm)</label>
+                    <input type="text" name="tensi" step="0.01" class="form-control" placeholder="Contoh: 120/80" required>
                   </div>
                   <div class="form-group">
-                    <label for="name">Nama Lengkap Anak</label>
-                    <input type="text" name="nama_anak" class="form-control" id="name" placeholder="Nama Lengkap Anak"/>
+                    <label for="bb_ibu_hamil">Berat Badan (kg)</label>
+                    <input type="number" name="bb_ibu_hamil" step="0.01" class="form-control" placeholder="Contoh: 58.50" required>
                   </div>
                   <div class="form-group">
-                    <label for="name">Nama Lengkap Ibu</label>
-                    <input type="text" name="nama_ibu" class="form-control" id="name" placeholder="Nama Lengkap Ibu"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="tgl_lahir">Tanggal Lahir</label>
-                    <input type="date" name="tgl_lahir" class="form-control" id="tgl_lahir"/>
-                  </div>
-                  <div class="form-group">
-                    <label for="telepon">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" class="form-control" id="jenis_kelamin">
-                      <option value="Laki-laki">Laki-laki</option>
-                      <option value="Perempuan">Perempuan</option>
+                    <label for="usia_hamil">Usia Hamil</label>
+                    <select name="usia_hamil" class="form-control" id="usia_hamil" required>
+                      <option value="">-- Pilih Usia Kehamilan --</option>
+                      @for ($i = 1; $i <= 42; $i++)
+                        <option value="{{ $i }} minggu">{{ $i }} minggu</option>
+                      @endfor
                     </select>
                   </div>
               </div>
             </div>
             <div class="card-action">
               <button type="submit" class="btn btn-success">Submit</button>
-              <a href="{{ route('kader.data-anak') }}" class="btn btn-danger">Cancel</a>
+              <a href="{{ route('kader.layanan-ibu-hamil') }}" class="btn btn-danger">Cancel</a>
             </div>
             </form>     
           </div>

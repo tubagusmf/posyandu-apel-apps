@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <a href="{{ route('kader.data-anak.create') }}" class="btn btn-primary">Tambah Data</a>
+              <a href="{{ route('kader.layanan-ibu-hamil.create') }}" class="btn btn-primary">Tambah Data</a>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -20,27 +20,29 @@
                 >
                   <thead>
                     <tr>
-                      <th>NIK Anak</th>
-                      <th>Nama Anak</th>
                       <th>Nama Ibu</th>
-                      <th>Tanggal Lahir</th>
-                      <th>Usia</th>
-                      <th>Jenis Kelamin</th>
-                      <th>Aksi</th>
+                      <th>Nama Kader</th>
+                      <th>Tensi</th>
+                      <th>Berat Badan</th>
+                      <th>Usia Hamil</th>
+                      <th>Tanggal Kunjungan</th>
+                      <th>Kondisi</th>
+                      <th>Aksi</th>                        
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($anak as $item)
+                    @foreach ($layananIbu as $item)
                     <tr>
-                      <td>{{ $item->nik_anak }}</td>
-                      <td>{{ $item->nama_anak }}</td>
-                      <td>{{ $item->nama_ibu }}</td>
-                      <td>{{ $item->tgl_lahir }}</td>
-                      <td>{{ $item->usia }} tahun</td>
-                      <td>{{ $item->jenis_kelamin }}</td>
+                      <td>{{ $item->ibu->nama_ibu_hamil }}</td>
+                      <td>{{ $item->kader->nama_kader }}</td>
+                      <td>{{ $item->tensi }}</td>
+                      <td>{{ $item->bb_ibu_hamil }}</td>
+                      <td>{{ $item->usia_hamil }}</td>
+                      <td>{{ $item->tgl_kunjungan }}</td>
+                      <td>{{ $item->kondisi }}</td>
                       <td>
-                        <a href="{{ route('kader.data-anak.edit', $item->nik_anak) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                        <form action="{{ route('kader.data-anak.destroy', $item->nik_anak) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('kader.layanan-ibu-hamil.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                        <form action="{{ route('kader.layanan-ibu-hamil.destroy', $item->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">

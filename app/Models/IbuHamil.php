@@ -19,7 +19,6 @@ class IbuHamil extends Model
         'nama_ibu_hamil',
         'tgl_lahir',
         'telepon',
-        'kondisi',
         'alamat',
     ];
 
