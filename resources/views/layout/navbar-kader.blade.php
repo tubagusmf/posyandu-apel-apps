@@ -40,12 +40,12 @@
             <div class="collapse" id="base">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="components/avatars.html">
+                  <a href="{{ route('kader.laporan-balita') }}">
                     <span class="sub-item">Laporan Bayi & Balita</span>
                   </a>
                 </li>
                 <li>
-                  <a href="components/buttons.html">
+                  <a href="{{ route('kader.laporan-ibu-hamil') }}">
                     <span class="sub-item">Laporan Ibu Hamil</span>
                   </a>
                 </li>

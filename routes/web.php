@@ -12,6 +12,8 @@ use App\Http\Controllers\Kader\DataKaderController;
 use App\Http\Controllers\Kader\DataBidanController;
 use App\Http\Controllers\Kader\LayananBalitaController;
 use App\Http\Controllers\Kader\LayananIbuHamilController;
+use App\Http\Controllers\Kader\LaporanBalitaController;
+use App\Http\Controllers\Kader\LaporanIbuHamilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,4 +135,14 @@ Route::middleware('auth:kader')->group(function () {
     Route::get('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}/edit', [LayananIbuHamilController::class, 'edit'])->name('kader.layanan-ibu-hamil.edit');
     Route::put('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'update'])->name('kader.layanan-ibu-hamil.update');
     Route::delete('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'destroy'])->name('kader.layanan-ibu-hamil.destroy');
+});
+
+//Route Laporan Balita
+Route::middleware('auth:kader')->group(function () {
+    Route::get('/kader/laporan-balita', [LaporanBalitaController::class, 'index'])->name('kader.laporan-balita');
+});
+
+//Route Laporan Ibu Hamil
+Route::middleware('auth:kader')->group(function () {
+    Route::get('/kader/laporan-ibu-hamil', [LaporanIbuHamilController::class, 'index'])->name('kader.laporan-ibu-hamil');
 });
