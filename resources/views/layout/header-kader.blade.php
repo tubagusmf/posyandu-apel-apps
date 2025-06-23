@@ -72,7 +72,7 @@
                     <div class="u-text">
                       <h4>{{ $user->nama_kader ?? $user->nama_bidan }}</h4>
                       <a
-                        href="profile.html"
+                        href="{{ route('kader.profile-kader') }}"
                         class="btn btn-xs btn-secondary btn-sm"
                         >View Profile</a
                       >

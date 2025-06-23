@@ -65,6 +65,17 @@ class LayananIbuHamilController extends Controller
             ->with('success', 'Data layanan berhasil ditambahkan.');
     }
 
+    public function show($id)
+    {
+        $data = [
+            'title' => 'Detail Layanan Ibu Hamil',
+            'layananIbuHamil' => LayananIbuHamil::findOrFail($id),
+            'ibuList' => IbuHamil::all(),
+            'content' => 'kader.layanan-ibu-hamil.show'
+        ];
+        return view('layout.wrapper', $data);
+    }
+
     public function edit($id)
     {
         $data = [
@@ -118,5 +129,22 @@ class LayananIbuHamilController extends Controller
         $layanan->delete();
         return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
+
+    public function rujukan()
+    {
+        // Ambil layanan dengan kondisi "Kurang Baik", sudah termasuk data ibu & kader
+        $data = [
+            'title' => 'Riwayat Rujukan Ibu Hamil',
+            'rujukanList' => LayananIbuHamil::with(['ibu', 'kader'])
+                ->where('kondisi', 'Kurang Baik')
+                ->orderByDesc('tgl_kunjungan')
+                ->get(),
+            'content' => 'kader.layanan-ibu-hamil.rujukan',
+        ];
+
+        return view('layout.wrapper', $data);
+    }
+
+
 }
 

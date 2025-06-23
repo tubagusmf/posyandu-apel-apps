@@ -53,8 +53,8 @@
             </div>
           </li>
           <li class="nav-item">
-              <a href="widgets.html">
-                <i class="fas fa-book"></i>
+              <a href="{{ route('kader.layanan-ibu-hamil.rujukan') }}">
+                <i class="fas fa-ambulance"></i>
                 <p>Rujukan</p>
               </a>
           </li>
@@ -98,12 +98,12 @@
             <div class="collapse" id="forms">
               <ul class="nav nav-collapse">
                 <li>
-                  <a href="{{ asset('kader/layanan-balita') }}">
+                  <a href="{{ route('kader.layanan-balita') }}">
                     <span class="sub-item">Bayi & Balita</span>
                   </a>
                 </li>
                 <li>
-                  <a href="{{ asset('kader/layanan-ibu-hamil') }}">
+                  <a href="{{ route('kader.layanan-ibu-hamil') }}">
                     <span class="sub-item">Ibu Hamil</span>
                   </a>
                 </li>
@@ -111,7 +111,7 @@
             </div>
           </li>
           <li class="nav-item">
-              <a href="widgets.html">
+              <a href="{{ route('kader.profile-kader') }}">
                 <i class="fas fa-home"></i>
                 <p>Profile</p>
               </a>
