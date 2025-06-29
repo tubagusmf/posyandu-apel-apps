@@ -18,6 +18,7 @@ use App\Http\Controllers\Kader\RujukanKaderController;
 use App\Http\Controllers\Kader\ProfileKaderController;
 use App\Http\Controllers\Bidan\LaporanBalitaBidanController;
 use App\Http\Controllers\Bidan\LaporanIbuHamilBidanController;
+use App\Http\Controllers\Bidan\ProfileBidanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,4 +180,11 @@ Route::middleware('auth:bidan')->group(function () {
 Route::middleware('auth:bidan')->group(function () {
     Route::get('/bidan/laporan-ibu-hamil', [LaporanIbuHamilBidanController::class, 'index'])->name('bidan.laporan-ibu-hamil');
     Route::get('/bidan/laporan-ibu-hamil/export/pdf', [LaporanIbuHamilBidanController::class, 'exportPdf'])->name('bidan.laporan-ibu-hamil.export.pdf');
+});
+
+//Route Profile Bidan
+Route::middleware('auth:bidan')->group(function () {
+    Route::get('/bidan/profile-bidan', [ProfileBidanController::class, 'index'])->name('bidan.profile-bidan');
+    Route::get('/bidan/profile-bidan/edit', [ProfileBidanController::class, 'edit'])->name('bidan.profile-bidan.edit');
+    Route::put('/bidan/profile-bidan', [ProfileBidanController::class, 'update'])->name('bidan.profile-bidan.update');
 });

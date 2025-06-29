@@ -27,7 +27,7 @@
                         </div>
                     </li>
                     <li class="nav-item"><a href="widgets.html"><i class="fas fa-book"></i><p>Rujukan</p></a></li>
-                    <li class="nav-item"><a href="widgets.html"><i class="fas fa-home"></i><p>Profile</p></a></li>
+                    <li class="nav-item"><a href="{{ route('bidan.profile-bidan') }}"><i class="fas fa-home"></i><p>Profile</p></a></li>
                     <li class="nav-item"><a href="{{ route('logout.bidan') }}"><i class="fas fa-sign-out-alt"></i><p>Logout</p></a></li>
                 </ul>
             </div>

@@ -39,7 +39,7 @@
                       </div>
                       <div class="u-text">
                         <h4>{{ Auth::guard('bidan')->user()->nama_bidan }}</h4>
-                        <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                        <a href="{{ route('bidan.profile-bidan') }}" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                       </div>
                     </div>
                   </li>
