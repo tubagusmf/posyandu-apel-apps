@@ -129,22 +129,5 @@ class LayananIbuHamilController extends Controller
         $layanan->delete();
         return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
-
-    public function rujukan()
-    {
-        // Ambil layanan dengan kondisi "Kurang Baik", sudah termasuk data ibu & kader
-        $data = [
-            'title' => 'Riwayat Rujukan Ibu Hamil',
-            'rujukanList' => LayananIbuHamil::with(['ibu', 'kader'])
-                ->where('kondisi', 'Kurang Baik')
-                ->orderByDesc('tgl_kunjungan')
-                ->get(),
-            'content' => 'kader.layanan-ibu-hamil.rujukan',
-        ];
-
-        return view('layout.wrapper', $data);
-    }
-
-
 }
 

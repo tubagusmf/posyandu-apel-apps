@@ -14,7 +14,9 @@ use App\Http\Controllers\Kader\LayananBalitaController;
 use App\Http\Controllers\Kader\LayananIbuHamilController;
 use App\Http\Controllers\Kader\LaporanBalitaController;
 use App\Http\Controllers\Kader\LaporanIbuHamilController;
+use App\Http\Controllers\Kader\RujukanKaderController;
 use App\Http\Controllers\Kader\ProfileKaderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -132,7 +134,6 @@ Route::middleware('auth:kader')->group(function () {
     Route::get('/kader/layanan-ibu-hamil', [LayananIbuHamilController::class, 'index'])->name('kader.layanan-ibu-hamil');
     Route::get('/kader/layanan-ibu-hamil/create', [LayananIbuHamilController::class, 'create'])->name('kader.layanan-ibu-hamil.create');
     Route::post('/kader/layanan-ibu-hamil', [LayananIbuHamilController::class, 'store'])->name('kader.layanan-ibu-hamil.store');
-    Route::get('/kader/layanan-ibu-hamil/rujukan', [LayananIbuHamilController::class, 'rujukan'])->name('kader.layanan-ibu-hamil.rujukan');
     Route::get('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'show'])->name('kader.layanan-ibu-hamil.show');
     Route::get('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}/edit', [LayananIbuHamilController::class, 'edit'])->name('kader.layanan-ibu-hamil.edit');
     Route::put('/kader/layanan-ibu-hamil/{layanan_ibu_hamil}', [LayananIbuHamilController::class, 'update'])->name('kader.layanan-ibu-hamil.update');
@@ -147,6 +148,17 @@ Route::middleware('auth:kader')->group(function () {
 //Route Laporan Ibu Hamil
 Route::middleware('auth:kader')->group(function () {
     Route::get('/kader/laporan-ibu-hamil', [LaporanIbuHamilController::class, 'index'])->name('kader.laporan-ibu-hamil');
+});
+
+//Route Rujukan Kader
+Route::middleware('auth:kader')->group(function () {
+    Route::get('/kader/rujukan-kader', [RujukanKaderController::class, 'index'])->name('kader.rujukan-kader');
+    Route::get('/kader/rujukan-kader/create/{rujukan}', [RujukanKaderController::class, 'create'])->name('kader.rujukan-kader.create');
+    Route::post('/kader/rujukan-kader', [RujukanKaderController::class, 'store'])->name('kader.rujukan-kader.store');
+    Route::get('/kader/rujukan-kader/data-rujukan', [RujukanKaderController::class, 'dataRujukan'])->name('kader.rujukan-kader.data-rujukan');
+    Route::get('/kader/rujukan-kader/{rujukan}/edit', [RujukanKaderController::class, 'edit'])->name('kader.rujukan-kader.edit');
+    Route::put('/kader/rujukan-kader/{rujukan}', [RujukanKaderController::class, 'update'])->name('kader.rujukan-kader.update');
+    Route::delete('/kader/rujukan-kader/{rujukan}', [RujukanKaderController::class, 'destroy'])->name('kader.rujukan-kader.destroy');
 });
 
 //Route Profile Kader

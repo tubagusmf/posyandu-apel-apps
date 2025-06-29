@@ -53,10 +53,25 @@
             </div>
           </li>
           <li class="nav-item">
-              <a href="{{ route('kader.layanan-ibu-hamil.rujukan') }}">
-                <i class="fas fa-ambulance"></i>
-                <p>Rujukan</p>
-              </a>
+            <a data-bs-toggle="collapse" href="#charts">
+              <i class="fas fa-ambulance"></i>
+              <p>Rujukan</p>
+              <span class="caret"></span>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav nav-collapse">
+                <li>
+                  <a href="{{ route('kader.rujukan-kader') }}">
+                    <span class="sub-item">Laporan Rujukan</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ route('kader.rujukan-kader.data-rujukan') }}">
+                    <span class="sub-item">Data Rujukan</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#sidebarLayouts">
