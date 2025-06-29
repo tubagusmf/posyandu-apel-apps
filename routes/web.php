@@ -16,7 +16,8 @@ use App\Http\Controllers\Kader\LaporanBalitaController;
 use App\Http\Controllers\Kader\LaporanIbuHamilController;
 use App\Http\Controllers\Kader\RujukanKaderController;
 use App\Http\Controllers\Kader\ProfileKaderController;
-
+use App\Http\Controllers\Bidan\LaporanBalitaBidanController;
+use App\Http\Controllers\Bidan\LaporanIbuHamilBidanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,4 +167,16 @@ Route::middleware('auth:kader')->group(function () {
     Route::get('/kader/profile-kader', [ProfileKaderController::class, 'index'])->name('kader.profile-kader');
     Route::get('/kader/profile-kader/edit', [ProfileKaderController::class, 'edit'])->name('kader.profile-kader.edit');
     Route::put('/kader/profile-kader', [ProfileKaderController::class, 'update'])->name('kader.profile-kader.update');
+});
+
+//Route Laporan Balita Bidan
+Route::middleware('auth:bidan')->group(function () {
+    Route::get('/bidan/laporan-balita', [LaporanBalitaBidanController::class, 'index'])->name('bidan.laporan-balita');
+    Route::get('/bidan/laporan-balita/export/pdf', [LaporanBalitaBidanController::class, 'exportPdf'])->name('bidan.laporan-balita.export.pdf');
+});
+
+//Route Laporan Ibu Hamil Bidan
+Route::middleware('auth:bidan')->group(function () {
+    Route::get('/bidan/laporan-ibu-hamil', [LaporanIbuHamilBidanController::class, 'index'])->name('bidan.laporan-ibu-hamil');
+    Route::get('/bidan/laporan-ibu-hamil/export/pdf', [LaporanIbuHamilBidanController::class, 'exportPdf'])->name('bidan.laporan-ibu-hamil.export.pdf');
 });
