@@ -15,6 +15,7 @@
                 </form>
             
                 <div class="mt-2 mt-md-0">
+                    <a href="{{ route('bidan.laporan-ibu-hamil.export.excel', ['bulan' => request('bulan')]) }}" class="btn btn-success">Export Excel</a>
                     <a href="{{ route('bidan.laporan-ibu-hamil.export.pdf', ['bulan' => request('bulan')]) }}" class="btn btn-danger">Export PDF</a>
                 </div>
             </div>

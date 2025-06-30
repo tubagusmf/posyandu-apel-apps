@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\bidan;
+namespace App\Http\Controllers\Bidan;
 
 use App\Http\Controllers\Controller;
 use App\Models\LayananBalita;
 use Illuminate\Http\Request;
 use PDF;
 use Carbon\Carbon;
+use App\Exports\LaporanBalitaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanBalitaBidanController extends Controller
 {
@@ -47,9 +49,17 @@ class LaporanBalitaBidanController extends Controller
 
         $pdf = PDF::loadView('bidan.laporan-balita.pdf', compact('laporanBalita'));
 
-        $tanggalSekarang = Carbon::now()->format('Y-m-d');
+        $tanggalSekarang = Carbon::now()->format('Y-m-d_H-i-s');
         $namaFile = 'laporan_balita_' . $tanggalSekarang . '.pdf';
 
         return $pdf->download($namaFile);
+    }
+
+    public function exportExcel(Request $request)
+    {
+        $tanggalSekarang = now()->format('Y-m-d_H-i-s'); // Format dengan jam:menit:detik
+        $namaFile = 'laporan_balita_' . $tanggalSekarang . '.xlsx';
+
+        return Excel::download(new LaporanBalitaExport($request->bulan), $namaFile);
     }
 }

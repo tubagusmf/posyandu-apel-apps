@@ -175,12 +175,14 @@ Route::middleware('auth:kader')->group(function () {
 Route::middleware('auth:bidan')->group(function () {
     Route::get('/bidan/laporan-balita', [LaporanBalitaBidanController::class, 'index'])->name('bidan.laporan-balita');
     Route::get('/bidan/laporan-balita/export/pdf', [LaporanBalitaBidanController::class, 'exportPdf'])->name('bidan.laporan-balita.export.pdf');
+    Route::get('/bidan/laporan-balita/export/excel', [LaporanBalitaBidanController::class, 'exportExcel'])->name('bidan.laporan-balita.export.excel');
 });
 
 //Route Laporan Ibu Hamil Bidan
 Route::middleware('auth:bidan')->group(function () {
     Route::get('/bidan/laporan-ibu-hamil', [LaporanIbuHamilBidanController::class, 'index'])->name('bidan.laporan-ibu-hamil');
     Route::get('/bidan/laporan-ibu-hamil/export/pdf', [LaporanIbuHamilBidanController::class, 'exportPdf'])->name('bidan.laporan-ibu-hamil.export.pdf');
+    Route::get('/bidan/laporan-ibu-hamil/export/excel', [LaporanIbuHamilBidanController::class, 'exportExcel'])->name('bidan.laporan-ibu-hamil.export.excel');
 });
 
 //Route Rujukan Bidan
