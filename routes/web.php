@@ -18,6 +18,7 @@ use App\Http\Controllers\Kader\RujukanKaderController;
 use App\Http\Controllers\Kader\ProfileKaderController;
 use App\Http\Controllers\Bidan\LaporanBalitaBidanController;
 use App\Http\Controllers\Bidan\LaporanIbuHamilBidanController;
+use App\Http\Controllers\Bidan\RujukanBidanController;
 use App\Http\Controllers\Bidan\ProfileBidanController;
 
 /*
@@ -180,6 +181,13 @@ Route::middleware('auth:bidan')->group(function () {
 Route::middleware('auth:bidan')->group(function () {
     Route::get('/bidan/laporan-ibu-hamil', [LaporanIbuHamilBidanController::class, 'index'])->name('bidan.laporan-ibu-hamil');
     Route::get('/bidan/laporan-ibu-hamil/export/pdf', [LaporanIbuHamilBidanController::class, 'exportPdf'])->name('bidan.laporan-ibu-hamil.export.pdf');
+});
+
+//Route Rujukan Bidan
+Route::middleware('auth:bidan')->group(function () {
+    Route::get('/bidan/rujukan-bidan', [RujukanBidanController::class, 'index'])->name('bidan.rujukan-bidan');
+    Route::get('/bidan/rujukan-bidan/{rujukan}/download/pdf', [RujukanBidanController::class, 'downloadPdf'])->name('bidan.rujukan-bidan.download.pdf');
+    Route::get('/bidan/rujukan-bidan/{rujukan}/print/pdf', [RujukanBidanController::class, 'printPdf'])->name('bidan.rujukan-bidan.print.pdf');
 });
 
 //Route Profile Bidan
