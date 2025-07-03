@@ -12,14 +12,20 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        if ($request->is('dashboard-kader') || $request->is('kader/*')) {
-            return route('login.kader'); // ← sesuaikan dengan route yang kamu buat
-        }
+        if (!$request->expectsJson()) {
+            session()->flash('error', 'Maaf, Anda harus login terlebih dahulu.');
 
-        if ($request->is('dashboard-bidan') || $request->is('bidan/*')) {
-            return route('login.bidan'); // ← sesuaikan dengan route yang kamu buat
+            if ($request->is('dashboard-kader') || $request->is('kader/*')) {
+                return route('login.kader'); 
+            }
+
+            if ($request->is('dashboard-bidan') || $request->is('bidan/*')) {
+                return route('login.bidan');
+            }
+
+            return route('login');
         }
-    
-        return route('login');
+        
+        return null;
     }
 }

@@ -34,15 +34,15 @@ use App\Http\Controllers\Bidan\ProfileBidanController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/login-kader', [KaderController::class, 'showLogin']);
+Route::get('/login-kader', [KaderController::class, 'showLogin'])->name('login.kader');
 Route::post('login-kader', [KaderController::class, 'login']);
-Route::get('/login-bidan', [BidanController::class, 'showLogin']);
+Route::get('/login-bidan', [BidanController::class, 'showLogin'])->name('login.bidan');
 Route::post('/login-bidan', [BidanController::class, 'login']);
 
 Route::get('register-kader', [KaderController::class, 'showRegister']);

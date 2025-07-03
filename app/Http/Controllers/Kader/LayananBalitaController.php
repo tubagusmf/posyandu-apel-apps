@@ -100,7 +100,6 @@ class LayananBalitaController extends Controller
             'imunisasi' => $request->imunisasi,
             'tgl_imunisasi' => $request->tgl_imunisasi,
             'catatan_kesehatan' => $request->catatan_kesehatan,
-            'tgl_kunjungan' => now(),
         ]);
 
         $statusGizi = $this->klasifikasiClusterGizi($layanan->id);
