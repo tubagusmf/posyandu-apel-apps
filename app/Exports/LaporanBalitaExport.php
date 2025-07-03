@@ -34,7 +34,7 @@ class LaporanBalitaExport implements FromView, WithStyles
     public function styles(Worksheet $sheet)
     {
         $rowCount = LayananBalita::count() + 1;
-        $range = 'A1:I' . $rowCount;
+        $range = 'A1:J' . $rowCount;
 
         return [
             $range => [

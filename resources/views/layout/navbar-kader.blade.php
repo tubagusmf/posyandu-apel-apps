@@ -54,7 +54,7 @@
           </li>
           <li class="nav-item">
             <a data-bs-toggle="collapse" href="#charts">
-              <i class="fas fa-ambulance"></i>
+              <i class="fas fa-book"></i>
               <p>Rujukan</p>
               <span class="caret"></span>
             </a>

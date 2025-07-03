@@ -37,6 +37,7 @@
                       <th>TB (cm)</th>
                       <th>LK (cm)</th>
                       <th>LILA (cm)</th>
+                      <th>Status Gizi</th>
                       <th>Imunisasi</th>
                       <th>Tanggal Imunisasi</th>
                       <th>Catatan Kesehatan</th>                    
@@ -51,6 +52,7 @@
                       <td>{{ $laporan->tb_anak }}</td>
                       <td>{{ $laporan->lk_anak }}</td>
                       <td>{{ $laporan->lila_anak }}</td>
+                      <td>{{ $laporan->status_gizi }}</td>
                       <td>{{ $laporan->imunisasi }}</td>
                       <td>{{ $laporan->tgl_imunisasi }}</td>
                       <td>{{ $laporan->catatan_kesehatan }}</td>

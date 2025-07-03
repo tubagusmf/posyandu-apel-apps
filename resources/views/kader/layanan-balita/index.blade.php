@@ -13,7 +13,8 @@
               <div class="table-responsive">
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
+                @endif        
+                
                 <table
                   id="basic-datatables"
                   class="display table table-striped table-hover"
@@ -26,6 +27,7 @@
                       <th>TB (cm)</th>
                       <th>LK (cm)</th>
                       <th>LILA (cm)</th>
+                      <th>Status Gizi</th>
                       <th>Imunisasi</th>
                       <th>Tanggal Imunisasi</th>
                       <th>Catatan</th>
@@ -41,6 +43,15 @@
                       <td>{{ $item->tb_anak }}</td>
                       <td>{{ $item->lk_anak }}</td>
                       <td>{{ $item->lila_anak }}</td>
+                      <td>
+                        <span class="badge 
+                            @if($item->status_gizi == 'Gizi Baik') badge-success
+                            @elseif($item->status_gizi == 'Gizi Kurang') badge-warning
+                            @else badge-danger
+                            @endif">
+                            {{ $item->status_gizi ?? '-' }}
+                        </span>
+                    </td>                    
                       <td>{{ $item->imunisasi }}</td>
                       <td>{{ $item->tgl_imunisasi }}</td>
                       <td>{{ $item->catatan_kesehatan }}</td>

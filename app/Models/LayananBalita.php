@@ -21,6 +21,7 @@ class LayananBalita extends Model
         'lk_anak',
         'lila_anak',
         'imunisasi',
+        'status_gizi',
         'tgl_imunisasi',
         'catatan_kesehatan',
         'tgl_kunjungan',
