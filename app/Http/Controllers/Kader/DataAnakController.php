@@ -35,6 +35,8 @@ class DataAnakController extends Controller
             'nama_ibu' => 'required|string',
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string',
+            'telepon' => 'required',
+            'alamat' => 'required|string',
         ]);
 
         Anak::create($request->all());
@@ -65,6 +67,8 @@ class DataAnakController extends Controller
             'nama_ibu' => 'required|string',
             'tgl_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string',
+            'telepon' => 'required',
+            'alamat' => 'required|string',
         ]);
 
         $anak->update($request->all());

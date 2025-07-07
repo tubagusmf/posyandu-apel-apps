@@ -20,6 +20,8 @@ class Anak extends Model
         'nama_ibu',
         'tgl_lahir',
         'jenis_kelamin',
+        'telepon',
+        'alamat',
     ];
 
     public function getUsiaAttribute()

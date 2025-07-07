@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class ProfileKader extends Authenticatable
 {
-    protected $table = 'tbl_data_user';
+    protected $table = 'tbl_data_kader';
     protected $primaryKey = 'nik_kader';
     public $incrementing = false;
     protected $keyType = 'string';

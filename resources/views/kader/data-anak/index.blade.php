@@ -24,8 +24,9 @@
                       <th>Nama Anak</th>
                       <th>Nama Ibu</th>
                       <th>Tanggal Lahir</th>
-                      <th>Usia</th>
                       <th>Jenis Kelamin</th>
+                      <th>Telepon</th>
+                      <th>Alamat</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -36,8 +37,9 @@
                       <td>{{ $item->nama_anak }}</td>
                       <td>{{ $item->nama_ibu }}</td>
                       <td>{{ $item->tgl_lahir }}</td>
-                      <td>{{ $item->usia }} tahun</td>
                       <td>{{ $item->jenis_kelamin }}</td>
+                      <td>{{ $item->telepon }}</td>
+                      <td>{{ $item->alamat }}</td>
                       <td>
                         <a href="{{ route('kader.data-anak.edit', $item->nik_anak) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                         <form action="{{ route('kader.data-anak.destroy', $item->nik_anak) }}" method="POST" style="display:inline;">

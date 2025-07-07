@@ -10,7 +10,7 @@ class DataKader extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = 'tbl_data_user';
+    protected $table = 'tbl_data_kader';
     protected $primaryKey = 'nik_kader';
 
     protected $fillable = [

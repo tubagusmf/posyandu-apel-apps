@@ -38,7 +38,7 @@ class ProfileKaderController extends Controller
 
         $request->validate([
             'nama_kader' => 'required|string|max:100',
-            'username' => 'required|string|max:50|unique:tbl_data_user,username,' . $user->nik_kader . ',nik_kader',
+            'username' => 'required|string|max:50|unique:tbl_data_kader,username,' . $user->nik_kader . ',nik_kader',
             'password' => 'nullable|min:3',
         ]);
 

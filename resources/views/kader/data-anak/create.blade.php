@@ -47,6 +47,14 @@
                       <option value="Perempuan">Perempuan</option>
                     </select>
                   </div>
+                  <div class="form-group">
+                    <label for="name">Nomor Telepon Orang Tua</label>
+                    <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Nomor Telepon"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Alamat Lengkap"></textarea>
+                  </div>
               </div>
             </div>
             <div class="card-action">

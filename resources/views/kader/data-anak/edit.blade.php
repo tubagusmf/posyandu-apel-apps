@@ -47,7 +47,15 @@
                         <option value="Laki-laki" {{ $anak->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                         <option value="Perempuan" {{ $anak->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                     </select>
-                </div>                
+                </div>  
+                <div class="form-group">
+                  <label for="name">Nomor Telepon Orang Tua</label>
+                  <input type="number" name="telepon" class="form-control" id="telepon" placeholder="Nomor Telepon" value="{{ old('telepon', $anak->telepon) }}"/>
+                </div>
+                <div class="form-group">
+                  <label for="alamat">Alamat</label>
+                  <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10" placeholder="Alamat Lengkap">{{ old('alamat', $anak->alamat) }}</textarea>
+                </div>              
               </div>
             </div>
             <div class="card-action">

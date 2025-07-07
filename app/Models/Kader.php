@@ -9,7 +9,7 @@ class Kader extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'tbl_data_user';
+    protected $table = 'tbl_data_kader';
     protected $primaryKey = 'nik_kader';
     public $timestamps = false;
 

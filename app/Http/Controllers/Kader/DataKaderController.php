@@ -31,9 +31,9 @@ class DataKaderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik_kader' => 'required|max:16|unique:tbl_data_user,nik_kader',
+            'nik_kader' => 'required|max:16|unique:tbl_data_kader,nik_kader',
             'nama_kader' => 'required|string|max:100',
-            'username' => 'required|unique:tbl_data_user,username',
+            'username' => 'required|unique:tbl_data_kader,username',
             'password' => 'required|min:3',
         ]);
 
@@ -65,9 +65,9 @@ class DataKaderController extends Controller
     public function update(Request $request, DataKader $list_kader)
     {
         $request->validate([
-            'nik_kader' => 'required|string|max:16|unique:tbl_data_user,nik_kader,' . $list_kader->nik_kader . ',nik_kader',
+            'nik_kader' => 'required|string|max:16|unique:tbl_data_kader,nik_kader,' . $list_kader->nik_kader . ',nik_kader',
             'nama_kader' => 'required|string|max:100',
-            'username' => 'required|unique:tbl_data_user,username,' . $list_kader->username . ',username',
+            'username' => 'required|unique:tbl_data_kader,username,' . $list_kader->username . ',username',
             'password' => 'nullable|min:3',
         ]);
 

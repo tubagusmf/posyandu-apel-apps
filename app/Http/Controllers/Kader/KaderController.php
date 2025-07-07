@@ -49,9 +49,9 @@ class KaderController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'nik'      => 'required|numeric|unique:tbl_data_user,nik_kader',
+            'nik'      => 'required|numeric|unique:tbl_data_kader,nik_kader',
             'name'     => 'required|string|max:100',
-            'username' => 'required|string|max:50|unique:tbl_data_user,username',
+            'username' => 'required|string|max:50|unique:tbl_data_kader,username',
             'pass'     => 'required|string|min:3',
             're_pass'  => 'required|same:pass',
         ], [

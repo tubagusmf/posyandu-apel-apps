@@ -23,7 +23,6 @@
                       <th>NIK Ibu</th>
                       <th>Nama Ibu</th>
                       <th>Tanggal Lahir</th>
-                      <th>Usia</th>
                       <th>Telepon</th>
                       <th>Alamat</th>
                       <th>Aksi</th>
@@ -35,7 +34,6 @@
                       <td>{{ $item->nik_ibu_hamil }}</td>
                       <td>{{ $item->nama_ibu_hamil }}</td>
                       <td>{{ $item->tgl_lahir }}</td>
-                      <td>{{ $item->usia }} tahun</td>
                       <td>{{ $item->telepon }}</td>
                       <td>{{ $item->alamat }}</td>
                       <td>
