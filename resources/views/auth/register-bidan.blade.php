@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register - Posyandu Apel</title>
 
+    <link
+      rel="icon"
+      href="{{ asset('template-login/colorlib-regform-7') }}/images/posyanduapel.png"
+      type="image/x-icon"
+    />
+
     <!-- CDN Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -24,7 +30,7 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="{{ asset('template-login/colorlib-regform-7') }}/images/signin-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="{{ asset('template-login/colorlib-regform-7') }}/images/posyanduapel.png" alt="sing up image"></figure>
                     </div>
                     <div class="signup-form">
                         <h2 class="form-title">Register Bidan</h2>

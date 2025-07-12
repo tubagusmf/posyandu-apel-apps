@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register - Posyandu Apel</title>
 
+    <link
+      rel="icon"
+      href="{{ asset('template-login/colorlib-regform-7') }}/images/posyanduapel.png"
+      type="image/x-icon"
+    />
+
     <!-- Font Icon -->
     <link rel="stylesheet" href="{{ asset('template-login/colorlib-regform-7') }}/fonts/material-icon/css/material-design-iconic-font.min.css">
 
@@ -21,7 +27,7 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="{{ asset('template-login/colorlib-regform-7') }}/images/signin-image.jpg" alt="sing up image"></figure>
+                        <figure><img src="{{ asset('template-login/colorlib-regform-7') }}/images/posyanduapel.png" alt="sing up image"></figure>
                     </div>
                     <div class="signin-form">
                         <h2 class="form-title">Register As</h2>

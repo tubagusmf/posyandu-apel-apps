@@ -7,9 +7,40 @@ use App\Models\LayananBalita;
 use App\Models\Anak;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class LayananBalitaController extends Controller
 {
+
+    private $standarWHO_LakiLaki = [
+        0  => [2.5, 3.3, 4.4],
+        1  => [3.4, 4.5, 5.8],
+        2  => [4.3, 5.6, 7.1],
+        3  => [5.0, 6.4, 8.0],
+        4  => [5.6, 7.0, 8.7],
+        5  => [6.0, 7.5, 9.3],
+        6  => [6.4, 7.9, 9.8],
+        7  => [6.7, 8.3, 10.3],
+        8  => [6.9, 8.6, 10.7],
+        9  => [7.1, 8.9, 11.0],
+        10 => [7.4, 9.2, 11.4],
+        11 => [7.6, 9.4, 11.7],
+        12 => [7.7, 9.6, 12.0],
+        13 => [7.9, 9.9, 12.3],
+        14 => [8.1, 10.1, 12.6],
+        15 => [8.3, 10.3, 12.8],
+        16 => [8.4, 10.5, 13.1],
+        17 => [8.6, 10.7, 13.4],
+        18 => [8.8, 10.9, 13.7],
+        19 => [8.9, 11.1, 13.9],
+        20 => [9.1, 11.3, 14.2],
+        21 => [9.2, 11.5, 14.5],
+        22 => [9.4, 11.8, 14.7],
+        23 => [9.5, 12.0, 15.0],
+        24 => [9.7, 12.2, 15.3],
+    ];
+
     public function index()
     {
         $data = [
@@ -115,22 +146,38 @@ class LayananBalitaController extends Controller
         return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
 
+    private function getUmurBulan($anak)
+    {
+        if (!$anak || !$anak->tgl_lahir) return 0;
+
+        $umurBulan = \Carbon\Carbon::parse($anak->tgl_lahir)->diffInMonths(\Carbon\Carbon::now());
+
+        return min(max($umurBulan, 0), 24); 
+    }
+
+    private function getWHOStatus($umurBulan, $bb)
+    {
+        $standar = $this->standarWHO_LakiLaki[$umurBulan] ?? null;
+        if (!$standar) return null;
+
+        [$min, $median, $max] = $standar;
+
+        if ($bb <= $min) return 'Gizi Kurang';
+        if ($bb >= $max) return 'Gizi Lebih';
+        return 'Gizi Baik';
+    }
+
     private function klasifikasiClusterGizi($id)
     {
-        $data = LayananBalita::all();
+        $data = LayananBalita::with('anak')->get();
+        if ($data->count() < 3) return null;
 
-        if ($data->count() < 3) {
-            return null;
-        }
-
-        $points = $data->map(function ($item) {
-            return [
-                'id' => $item->id,
-                'bb' => $item->bb_anak,
-                'tb' => $item->tb_anak,
-                'lk' => $item->lk_anak,
-            ];
-        })->toArray();
+        $points = $data->map(fn($item) => [
+            'id' => $item->id,
+            'bb' => $item->bb_anak,
+            'tb' => $item->tb_anak,
+            'lk' => $item->lk_anak,
+        ])->toArray();
 
         $max = [
             'bb' => max(array_column($points, 'bb')),
@@ -146,15 +193,16 @@ class LayananBalitaController extends Controller
         unset($p);
 
         $centroids = array_map(fn($p) => [
-            'bb' => $p['bb'],
-            'tb' => $p['tb'],
-            'lk' => $p['lk'],
+            'bb' => $p['bb'], 'tb' => $p['tb'], 'lk' => $p['lk']
         ], array_slice($points, 0, 3));
 
+        Log::info("Centroid Awal", $centroids);
+
         $changed = true;
-        $clusters = [0 => [], 1 => [], 2 => []];
+        $iteration = 0;
 
         while ($changed) {
+            $iteration++;
             $changed = false;
             $clusters = [0 => [], 1 => [], 2 => []];
 
@@ -165,17 +213,22 @@ class LayananBalitaController extends Controller
                     pow($point['lk'] - $c['lk'], 2)
                 ), $centroids);
 
+                Log::info("Iterasi {$iteration} - Point ID {$point['id']} - Jarak ke Centroid", $distances);
+
                 $idx = array_search(min($distances), $distances);
                 $clusters[$idx][] = $point;
             }
 
             foreach ($clusters as $i => $cluster) {
                 if (empty($cluster)) continue;
+
                 $newCentroid = [
                     'bb' => array_sum(array_column($cluster, 'bb')) / count($cluster),
                     'tb' => array_sum(array_column($cluster, 'tb')) / count($cluster),
                     'lk' => array_sum(array_column($cluster, 'lk')) / count($cluster),
                 ];
+
+                Log::info("Iterasi {$iteration} - Update Centroid {$i}", $newCentroid);
 
                 if (
                     round($centroids[$i]['bb'], 4) !== round($newCentroid['bb'], 4) ||
@@ -188,7 +241,7 @@ class LayananBalitaController extends Controller
             }
         }
 
-        $avgBB = array_map(fn($c) => array_sum(array_column($c, 'bb')) / count($c), $clusters);
+        $avgBB = array_map(fn($c) => count($c) ? array_sum(array_column($c, 'bb')) / count($c) : 0, $clusters);
         asort($avgBB);
         $sortedKeys = array_keys($avgBB);
         $labelMap = [
@@ -197,17 +250,20 @@ class LayananBalitaController extends Controller
             $sortedKeys[2] => 'Gizi Lebih',
         ];
 
+        Log::info("Label Mapping (avgBB):", $labelMap);
+
         $targetStatus = null;
         foreach ($clusters as $i => $cluster) {
             foreach ($cluster as $point) {
-                $status = $labelMap[$i];
-                LayananBalita::where('id', $point['id'])->update([
-                    'status_gizi' => $status,
-                ]);
+                $layanan = $data->firstWhere('id', $point['id']);
+                $umurBulan = $this->getUmurBulan($layanan->anak);
+                $bb = $layanan->bb_anak;
+                $status = $this->getWHOStatus($umurBulan, $bb) ?? $labelMap[$i];
 
-                if ($point['id'] == $id) {
-                    $targetStatus = $status;
-                }
+                Log::info("Point ID {$point['id']} | Umur: {$umurBulan} bulan | BB: {$bb} kg | Status: {$status}");
+
+                LayananBalita::where('id', $point['id'])->update(['status_gizi' => $status]);
+                if ($point['id'] == $id) $targetStatus = $status;
             }
         }
 

@@ -18,7 +18,7 @@
     />
     <link
       rel="icon"
-      href="{{ asset('template-admin') }}/assets/img/kaiadmin/favicon.ico"
+      href="{{ asset('template-login/colorlib-regform-7') }}/images/posyanduapel.png"
       type="image/x-icon"
     />
 

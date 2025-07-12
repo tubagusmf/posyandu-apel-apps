@@ -43,7 +43,7 @@
             >
               <div class="avatar-sm">
                 <img
-                  src="{{ asset('template-admin') }}/assets/img/profile.jpg"
+                  src="{{ asset('template-admin') }}/assets/img/female-doctor.png"
                   alt="..."
                   class="avatar-img rounded-circle"
                 />
@@ -64,7 +64,7 @@
                   <div class="user-box">
                     <div class="avatar-lg">
                       <img
-                        src="{{ asset('template-admin') }}/assets/img/profile.jpg"
+                        src="{{ asset('template-admin') }}/assets/img/female-doctor.png"
                         alt="image profile"
                         class="avatar-img rounded"
                       />
