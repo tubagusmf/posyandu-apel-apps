@@ -9,38 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use App\Data\StandarWHO;
 
 class LayananBalitaController extends Controller
 {
-
-    private $standarWHO_LakiLaki = [
-        0  => [2.5, 3.3, 4.4],
-        1  => [3.4, 4.5, 5.8],
-        2  => [4.3, 5.6, 7.1],
-        3  => [5.0, 6.4, 8.0],
-        4  => [5.6, 7.0, 8.7],
-        5  => [6.0, 7.5, 9.3],
-        6  => [6.4, 7.9, 9.8],
-        7  => [6.7, 8.3, 10.3],
-        8  => [6.9, 8.6, 10.7],
-        9  => [7.1, 8.9, 11.0],
-        10 => [7.4, 9.2, 11.4],
-        11 => [7.6, 9.4, 11.7],
-        12 => [7.7, 9.6, 12.0],
-        13 => [7.9, 9.9, 12.3],
-        14 => [8.1, 10.1, 12.6],
-        15 => [8.3, 10.3, 12.8],
-        16 => [8.4, 10.5, 13.1],
-        17 => [8.6, 10.7, 13.4],
-        18 => [8.8, 10.9, 13.7],
-        19 => [8.9, 11.1, 13.9],
-        20 => [9.1, 11.3, 14.2],
-        21 => [9.2, 11.5, 14.5],
-        22 => [9.4, 11.8, 14.7],
-        23 => [9.5, 12.0, 15.0],
-        24 => [9.7, 12.2, 15.3],
-    ];
-
     public function index()
     {
         $data = [
@@ -155,19 +127,25 @@ class LayananBalitaController extends Controller
         return min(max($umurBulan, 0), 24); 
     }
 
-    private function getWHOStatus($umurBulan, $bb)
+    private function getWHOStatus($umurBulan, $bb, $jenisKelamin = 'L')
     {
-        $standar = $this->standarWHO_LakiLaki[$umurBulan] ?? null;
-        if (!$standar) return null;
+        $data = StandarWHO::get();
 
-        [$min, $median, $max] = $standar;
+        if (!isset($data[$jenisKelamin][$umurBulan])) {
+            \Log::warning("Data WHO tidak ditemukan untuk JK={$jenisKelamin} dan umur={$umurBulan}");
+            return null;
+        }
+
+        [$min, $median, $max] = $data[$jenisKelamin][$umurBulan];
 
         if ($bb <= $min) return 'Gizi Kurang';
         if ($bb >= $max) return 'Gizi Lebih';
+
         return 'Gizi Baik';
     }
 
-    private function klasifikasiClusterGizi($id)
+
+    public function klasifikasiClusterGizi($id)
     {
         $data = LayananBalita::with('anak')->get();
         if ($data->count() < 3) return null;
@@ -200,7 +178,6 @@ class LayananBalitaController extends Controller
 
         $changed = true;
         $iteration = 0;
-
         while ($changed) {
             $iteration++;
             $changed = false;
@@ -258,9 +235,12 @@ class LayananBalitaController extends Controller
                 $layanan = $data->firstWhere('id', $point['id']);
                 $umurBulan = $this->getUmurBulan($layanan->anak);
                 $bb = $layanan->bb_anak;
-                $status = $this->getWHOStatus($umurBulan, $bb) ?? $labelMap[$i];
+                $jk = strtolower($layanan->anak->jenis_kelamin) === 'perempuan' ? 'P' : 'L';
+                $status = $this->getWHOStatus($umurBulan, $bb, $jk) ?? $labelMap[$i];
 
                 Log::info("Point ID {$point['id']} | Umur: {$umurBulan} bulan | BB: {$bb} kg | Status: {$status}");
+
+                Log::info("Point ID {$point['id']} | JK: {$jk} | BB: {$bb} | Umur: {$umurBulan}");
 
                 LayananBalita::where('id', $point['id'])->update(['status_gizi' => $status]);
                 if ($point['id'] == $id) $targetStatus = $status;

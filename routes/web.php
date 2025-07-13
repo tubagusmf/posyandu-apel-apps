@@ -5,7 +5,6 @@ use App\Http\Controllers\Kader\KaderController;
 use App\Http\Controllers\Bidan\BidanController;
 use App\Http\Controllers\Kader\DashboardKaderController;
 use App\Http\Controllers\Bidan\DashboardBidanController;
-use App\Http\Controllers\Kader\DataIbuController;
 use App\Http\Controllers\Kader\DataAnakController;
 use App\Http\Controllers\Kader\DataIbuHamilController;
 use App\Http\Controllers\Kader\DataKaderController;
@@ -64,17 +63,6 @@ Route::middleware('auth:kader')->group(function () {
 });
 Route::middleware('auth:bidan')->group(function () {
     Route::get('/dashboard-bidan', [DashboardBidanController::class, 'index'])->name('dashboard.bidan');
-});
-
-//Route Data Ibu
-Route::middleware('auth:kader')->group(function () {
-    Route::get('/kader/data-ibu', [DataIbuController::class, 'index'])->name('kader.data-ibu');
-    Route::get('/kader/data-ibu/create', [DataIbuController::class, 'create'])->name('kader.data-ibu.create');
-    Route::post('/kader/data-ibu', [DataIbuController::class, 'store'])->name('kader.data-ibu.store');
-    Route::get('/kader/data-ibu/{ibu}', [DataIbuController::class, 'show'])->name('kader.data-ibu.show');
-    Route::get('/kader/data-ibu/{ibu}/edit', [DataIbuController::class, 'edit'])->name('kader.data-ibu.edit');
-    Route::put('/kader/data-ibu/{ibu}', [DataIbuController::class, 'update'])->name('kader.data-ibu.update');
-    Route::delete('/kader/data-ibu/{ibu}', [DataIbuController::class, 'destroy'])->name('kader.data-ibu.destroy');
 });
 
 //Route Data Anak
