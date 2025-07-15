@@ -124,7 +124,7 @@ class LayananBalitaController extends Controller
 
         $umurBulan = \Carbon\Carbon::parse($anak->tgl_lahir)->diffInMonths(\Carbon\Carbon::now());
 
-        return min(max($umurBulan, 0), 24); 
+        return min(max($umurBulan, 0), 60); 
     }
 
     private function getWHOStatus($umurBulan, $bb, $jenisKelamin = 'L')
@@ -150,28 +150,27 @@ class LayananBalitaController extends Controller
         $data = LayananBalita::with('anak')->get();
         if ($data->count() < 3) return null;
 
-        $points = $data->map(fn($item) => [
-            'id' => $item->id,
-            'bb' => $item->bb_anak,
-            'tb' => $item->tb_anak,
-            'lk' => $item->lk_anak,
-        ])->toArray();
+        $points = $data->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'bb' => $item->bb_anak,
+                'umur' => $this->getUmurBulan($item->anak),
+            ];
+        })->toArray();
 
         $max = [
             'bb' => max(array_column($points, 'bb')),
-            'tb' => max(array_column($points, 'tb')),
-            'lk' => max(array_column($points, 'lk')),
+            'umur' => max(array_column($points, 'umur')),
         ];
 
         foreach ($points as &$p) {
             $p['bb'] /= $max['bb'];
-            $p['tb'] /= $max['tb'];
-            $p['lk'] /= $max['lk'];
+            $p['umur'] /= $max['umur'];
         }
         unset($p);
 
         $centroids = array_map(fn($p) => [
-            'bb' => $p['bb'], 'tb' => $p['tb'], 'lk' => $p['lk']
+            'bb' => $p['bb'], 'umur' => $p['umur']
         ], array_slice($points, 0, 3));
 
         Log::info("Centroid Awal", $centroids);
@@ -186,8 +185,7 @@ class LayananBalitaController extends Controller
             foreach ($points as $point) {
                 $distances = array_map(fn($c) => sqrt(
                     pow($point['bb'] - $c['bb'], 2) +
-                    pow($point['tb'] - $c['tb'], 2) +
-                    pow($point['lk'] - $c['lk'], 2)
+                    pow($point['umur'] - $c['umur'], 2)
                 ), $centroids);
 
                 Log::info("Iterasi {$iteration} - Point ID {$point['id']} - Jarak ke Centroid", $distances);
@@ -201,16 +199,14 @@ class LayananBalitaController extends Controller
 
                 $newCentroid = [
                     'bb' => array_sum(array_column($cluster, 'bb')) / count($cluster),
-                    'tb' => array_sum(array_column($cluster, 'tb')) / count($cluster),
-                    'lk' => array_sum(array_column($cluster, 'lk')) / count($cluster),
+                    'umur' => array_sum(array_column($cluster, 'umur')) / count($cluster),
                 ];
 
                 Log::info("Iterasi {$iteration} - Update Centroid {$i}", $newCentroid);
 
                 if (
                     round($centroids[$i]['bb'], 4) !== round($newCentroid['bb'], 4) ||
-                    round($centroids[$i]['tb'], 4) !== round($newCentroid['tb'], 4) ||
-                    round($centroids[$i]['lk'], 4) !== round($newCentroid['lk'], 4)
+                    round($centroids[$i]['umur'], 4) !== round($newCentroid['umur'], 4)
                 ) {
                     $centroids[$i] = $newCentroid;
                     $changed = true;
@@ -233,14 +229,12 @@ class LayananBalitaController extends Controller
         foreach ($clusters as $i => $cluster) {
             foreach ($cluster as $point) {
                 $layanan = $data->firstWhere('id', $point['id']);
-                $umurBulan = $this->getUmurBulan($layanan->anak);
-                $bb = $layanan->bb_anak;
+                $umurBulan = $point['umur'] * $max['umur'];
+                $bb = $point['bb'] * $max['bb'];
                 $jk = strtolower($layanan->anak->jenis_kelamin) === 'perempuan' ? 'P' : 'L';
-                $status = $this->getWHOStatus($umurBulan, $bb, $jk) ?? $labelMap[$i];
+                $status = $this->getWHOStatus(round($umurBulan), round($bb, 1), $jk) ?? $labelMap[$i];
 
-                Log::info("Point ID {$point['id']} | Umur: {$umurBulan} bulan | BB: {$bb} kg | Status: {$status}");
-
-                Log::info("Point ID {$point['id']} | JK: {$jk} | BB: {$bb} | Umur: {$umurBulan}");
+                Log::info("Point ID {$point['id']} | Umur: " . round($umurBulan) . " bulan | BB: " . round($bb, 1) . " kg | Status: {$status}");
 
                 LayananBalita::where('id', $point['id'])->update(['status_gizi' => $status]);
                 if ($point['id'] == $id) $targetStatus = $status;
