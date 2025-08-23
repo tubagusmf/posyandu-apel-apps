@@ -141,7 +141,7 @@ class LayananBalitaController extends Controller
         if ($bb <= $min) return 'Gizi Kurang';
         if ($bb >= $max) return 'Gizi Lebih';
 
-        return 'Gizi Baik';
+        return 'Gizi Normal';
     }
 
 
@@ -219,7 +219,7 @@ class LayananBalitaController extends Controller
         $sortedKeys = array_keys($avgBB);
         $labelMap = [
             $sortedKeys[0] => 'Gizi Kurang',
-            $sortedKeys[1] => 'Gizi Baik',
+            $sortedKeys[1] => 'Gizi Normal',
             $sortedKeys[2] => 'Gizi Lebih',
         ];
 

@@ -45,7 +45,7 @@
                       <td>{{ $item->lila_anak }}</td>
                       <td>
                         <span class="badge 
-                            @if($item->status_gizi == 'Gizi Baik') badge-success
+                            @if($item->status_gizi == 'Gizi Normal') badge-success
                             @elseif($item->status_gizi == 'Gizi Kurang') badge-warning
                             @else badge-danger
                             @endif">
