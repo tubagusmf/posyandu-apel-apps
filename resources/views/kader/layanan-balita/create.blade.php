@@ -25,7 +25,7 @@
                 <form action="{{ route('kader.layanan-balita.store') }}" method="POST">
                   @csrf
                   <div class="form-group">
-                    <label for="nik_anak">Nama Anak</label>
+                    <label for="nik_anak">Nama Anak <span class="text-danger">*</span></label>
                     <select name="nik_anak" class="form-control" id="nik_anak" required>
                       <option value="">-- Pilih Nama Anak --</option>
                       @foreach($anakList as $anak)
@@ -34,32 +34,32 @@
                     </select>
                   </div>                  
                   <div class="form-group">
-                    <label for="bb_anak">Berat Badan (kg)</label>
+                    <label for="bb_anak">Berat Badan (kg) <span class="text-danger">*</span></label>
                     <input type="number" name="bb_anak" step="0.01" class="form-control" placeholder="Contoh: 10.50" required>
                   </div>                 
                   <div class="form-group">
-                    <label for="tb_anak">Tinggi Badan (cm)</label>
+                    <label for="tb_anak">Tinggi Badan (cm) <span class="text-danger">*</span></label>
                     <input type="number" name="tb_anak" step="0.01" class="form-control" placeholder="Contoh: 75.50" required>
                   </div>
                   <div class="form-group">
-                    <label for="lk_anak">Lingkar Kepala (cm)</label>
+                    <label for="lk_anak">Lingkar Kepala (cm) <span class="text-danger">*</span></label>
                     <input type="number" name="lk_anak" step="0.01" class="form-control" placeholder="Contoh: 44.20" required>
                   </div>
                   <div class="form-group">
-                    <label for="lila_anak">Lingkar Lengan (cm)</label>
+                    <label for="lila_anak">Lingkar Lengan (cm) <span class="text-danger">*</span></label>
                     <input type="number" name="lila_anak" step="0.01" class="form-control" placeholder="Contoh: 13.50" required>
                   </div>
                   <div class="form-group">
                     <label for="imunisasi">Jenis & Jadwal Imunisasi</label>
-                    <textarea name="imunisasi" class="form-control" rows="3" placeholder="Contoh: BCG - 12 Jan 2025" required></textarea>
+                    <textarea name="imunisasi" class="form-control" rows="3" placeholder="Contoh: BCG - 12 Jan 2025"></textarea>
                   </div>
                   <div class="form-group">
                     <label for="tgl_imunisasi">Tanggal Imunisasi</label>
-                    <input type="date" name="tgl_imunisasi" class="form-control" required>
+                    <input type="date" name="tgl_imunisasi" class="form-control">
                   </div>
                   <div class="form-group">
                     <label for="catatan_kesehatan">Catatan Kesehatan</label>
-                    <textarea name="catatan_kesehatan" class="form-control" rows="3" placeholder="Catatan Kesehatan" required></textarea>
+                    <textarea name="catatan_kesehatan" class="form-control" rows="3" placeholder="Catatan Kesehatan"></textarea>
                   </div>
               </div>
             </div>
@@ -67,6 +67,7 @@
               <button type="submit" class="btn btn-success">Submit</button>
               <a href="{{ route('kader.layanan-balita') }}" class="btn btn-danger">Cancel</a>
             </div>
+            <p>note: untuk tanda <span class="text-danger">*</span> wajib diisi</p>
             </form>     
           </div>
         </div>

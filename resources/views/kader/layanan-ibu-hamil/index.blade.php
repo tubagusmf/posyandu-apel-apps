@@ -20,12 +20,12 @@
                 >
                   <thead>
                     <tr>
+                      <th>Tanggal Kunjungan</th>
                       <th>Nama Ibu</th>
                       <th>Nama Kader</th>
                       <th>Tensi</th>
                       <th>Berat Badan</th>
                       <th>Usia Hamil</th>
-                      <th>Tanggal Kunjungan</th>
                       <th>Kondisi</th>
                       <th>Aksi</th>                        
                     </tr>
@@ -33,12 +33,12 @@
                   <tbody>
                     @foreach ($layananIbu as $item)
                     <tr>
+                      <td>{{ $item->tgl_kunjungan }}</td>
                       <td>{{ $item->ibu->nama_ibu_hamil }}</td>
                       <td>{{ $item->kader->nama_kader }}</td>
                       <td>{{ $item->tensi }}</td>
                       <td>{{ $item->bb_ibu_hamil }}</td>
                       <td>{{ $item->usia_hamil }}</td>
-                      <td>{{ $item->tgl_kunjungan }}</td>
                       <td>{{ $item->kondisi }}</td>
                       <td>
                         <a href="{{ route('kader.layanan-ibu-hamil.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

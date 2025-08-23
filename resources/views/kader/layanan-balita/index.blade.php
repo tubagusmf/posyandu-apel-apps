@@ -21,6 +21,7 @@
                 >
                   <thead>
                     <tr>
+                      <th>Tanggal Kunjungan</th>
                       <th>Nama Anak</th>
                       <th>Nama Kader</th>
                       <th>BB (kg)</th>
@@ -37,6 +38,7 @@
                   <tbody>
                     @foreach ($layananBalita as $item)
                     <tr>
+                      <td>{{ $item->tgl_kunjungan }}</td>
                       <td>{{ $item->anak->nama_anak }}</td>
                       <td>{{ $item->kader->nama_kader }}</td>
                       <td>{{ $item->bb_anak }}</td>

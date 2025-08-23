@@ -17,7 +17,9 @@ class LayananBalitaController extends Controller
     {
         $data = [
             'title' => 'Layanan Balita',
-            'layananBalita' => LayananBalita::with(['anak'])->get(),
+            'layananBalita' => LayananBalita::with(['anak'])
+                ->orderBy('tgl_kunjungan', 'desc')
+                ->get(),
             'anakList' => Anak::all(),
             'content' => 'kader.layanan-balita.index'
         ];
@@ -43,9 +45,6 @@ class LayananBalitaController extends Controller
             'tb_anak' => 'required|numeric',
             'lk_anak' => 'required|numeric',
             'lila_anak' => 'required|numeric',
-            'imunisasi' => 'required|string',
-            'tgl_imunisasi' => 'required|date',
-            'catatan_kesehatan' => 'nullable|string',
         ]);
 
         $layanan = LayananBalita::create([
@@ -88,9 +87,6 @@ class LayananBalitaController extends Controller
             'tb_anak' => 'required|numeric',
             'lk_anak' => 'required|numeric',
             'lila_anak' => 'required|numeric',
-            'imunisasi' => 'required|string',
-            'tgl_imunisasi' => 'required|date',
-            'catatan_kesehatan' => 'nullable|string',
         ]);
 
         $layanan->update([

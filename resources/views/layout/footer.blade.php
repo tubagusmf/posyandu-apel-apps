@@ -111,7 +111,9 @@ $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
 
 <script>
   $(document).ready(function () {
-    $("#basic-datatables").DataTable({});
+    $('#basic-datatables').DataTable({
+      "order": [[0, "desc"]]
+    });
 
     $("#multi-filter-select").DataTable({
       pageLength: 5,
