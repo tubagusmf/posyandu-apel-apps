@@ -59,6 +59,7 @@
                       <td>{{ $item->catatan_kesehatan }}</td>
                       <td>
                         <a href="{{ route('kader.layanan-balita.edit', $item->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                        <a href="{{ route('kader.layanan-balita.pdf', $item->id) }}" class="btn btn-warning btn-sm" target="_blank"><i class="fas fa-paper-plane"></i> </a>
                         <form action="{{ route('kader.layanan-balita.destroy', $item->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

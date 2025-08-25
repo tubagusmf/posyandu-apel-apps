@@ -116,6 +116,7 @@ Route::middleware('auth:kader')->group(function () {
     Route::post('/kader/layanan-balita', [LayananBalitaController::class, 'store'])->name('kader.layanan-balita.store');
     Route::get('/kader/layanan-balita/cluster', [LayananBalitaController::class, 'clusterGizi'])->name('kader.layanan-balita.cluster');
     Route::get('/kader/layanan-balita/{layanan_balita}', [LayananBalitaController::class, 'show'])->name('kader.layanan-balita.show');
+    Route::get('/kader/layanan-balita/{id}/pdf', [LayananBalitaController::class, 'printPdf'])->name('kader.layanan-balita.pdf');
     Route::get('/kader/layanan-balita/{layanan_balita}/edit', [LayananBalitaController::class, 'edit'])->name('kader.layanan-balita.edit');
     Route::put('/kader/layanan-balita/{layanan_balita}', [LayananBalitaController::class, 'update'])->name('kader.layanan-balita.update');
     Route::delete('/kader/layanan-balita/{layanan_balita}', [LayananBalitaController::class, 'destroy'])->name('kader.layanan-balita.destroy');

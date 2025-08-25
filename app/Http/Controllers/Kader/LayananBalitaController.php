@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Kader;
 use App\Http\Controllers\Controller;
 use App\Models\LayananBalita;
 use App\Models\Anak;
+use App\Models\Kader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use App\Data\StandarWHO;
+use PDF;
 
 class LayananBalitaController extends Controller
 {
@@ -238,5 +240,15 @@ class LayananBalitaController extends Controller
         }
 
         return $targetStatus;
+    }
+
+    public function printPdf(Request $request, $id)
+    {
+        $layanan = LayananBalita::with(['anak', 'kader'])->findOrFail($id);
+
+        $pdf = Pdf::loadView('kader.layanan-balita.pdf', compact('layanan'))
+                ->setPaper('A4', 'portrait');
+
+        return $pdf->stream('Hasil-Penimbangan-'.$layanan->anak->nama_anak.'.pdf');
     }
 }
