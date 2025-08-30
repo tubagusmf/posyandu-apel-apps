@@ -26,20 +26,44 @@
     <p><strong>Tanggal Kunjungan:</strong> {{ $layanan->tgl_kunjungan }}</p>
 
     <table>
-        <tr>
-            <th>Berat Badan (kg)</th>
-            <th>Tinggi Badan (cm)</th>
-            <th>Lingkar Kepala (cm)</th>
-            <th>LILA (cm)</th>
-            <th>Status Gizi</th>
-        </tr>
-        <tr>
-            <td>{{ $layanan->bb_anak }}</td>
-            <td>{{ $layanan->tb_anak }}</td>
-            <td>{{ $layanan->lk_anak }}</td>
-            <td>{{ $layanan->lila_anak }}</td>
-            <td>{{ $layanan->status_gizi ?? '-' }}</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Tanggal Kunjungan</th>
+                <th>Nama Anak</th>
+                <th>Nama Kader</th>
+                <th>Berat Badan (kg)</th>
+                <th>Tinggi Badan (cm)</th>
+                <th>Lingkar Kepala (cm)</th>
+                <th>LILA (cm)</th>
+                <th>Status Gizi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if($previousLayanan)
+            <tr>
+                {{-- Bulan Lalu --}}
+                <td>{{ $previousLayanan->tgl_kunjungan }}</td>
+                <td>{{ $previousLayanan->anak->nama_anak ?? '-' }}</td>
+                <td>{{ $previousLayanan->kader->nama_kader ?? '-' }}</td>
+                <td>{{ $previousLayanan->bb_anak }}</td>
+                <td>{{ $previousLayanan->tb_anak }}</td>
+                <td>{{ $previousLayanan->lk_anak }}</td>
+                <td>{{ $previousLayanan->lila_anak }}</td>
+                <td>{{ $previousLayanan->status_gizi ?? '-' }}</td>
+            </tr>
+            @endif
+            <tr>
+                {{-- Bulan Sekarang --}}
+                <td>{{ $layanan->tgl_kunjungan }}</td>
+                <td>{{ $layanan->anak->nama_anak ?? '-' }}</td>
+                <td>{{ $layanan->kader->nama_kader ?? '-' }}</td>
+                <td>{{ $layanan->bb_anak }}</td>
+                <td>{{ $layanan->tb_anak }}</td>
+                <td>{{ $layanan->lk_anak }}</td>
+                <td>{{ $layanan->lila_anak }}</td>
+                <td>{{ $layanan->status_gizi ?? '-' }}</td>
+            </tr>
+        </tbody>
     </table>
 
     <p><strong>Imunisasi:</strong> {{ $layanan->imunisasi }}</p>

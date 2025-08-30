@@ -50,7 +50,7 @@
                     <input type="number" name="lila_anak" step="0.01" class="form-control" placeholder="Contoh: 13.50" required>
                   </div>
                   <div class="form-group">
-                    <label for="imunisasi">Jenis & Jadwal Imunisasi</label>
+                    <label for="imunisasi">Jenis Imunisasi</label>
                     <textarea name="imunisasi" class="form-control" rows="3" placeholder="Contoh: BCG - 12 Jan 2025"></textarea>
                   </div>
                   <div class="form-group">

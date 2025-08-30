@@ -246,8 +246,15 @@ class LayananBalitaController extends Controller
     {
         $layanan = LayananBalita::with(['anak', 'kader'])->findOrFail($id);
 
-        $pdf = Pdf::loadView('kader.layanan-balita.pdf', compact('layanan'))
-                ->setPaper('A4', 'portrait');
+        $previousLayanan = LayananBalita::where('nik_anak', $layanan->nik_anak)
+            ->where('tgl_kunjungan', '<', $layanan->tgl_kunjungan)
+            ->orderBy('tgl_kunjungan', 'desc')
+            ->first();
+
+        $pdf = Pdf::loadView('kader.layanan-balita.pdf', [
+            'layanan' => $layanan,
+            'previousLayanan' => $previousLayanan
+        ])->setPaper('A4', 'portrait');
 
         return $pdf->stream('Hasil-Penimbangan-'.$layanan->anak->nama_anak.'.pdf');
     }

@@ -53,7 +53,7 @@
                     <input type="number" name="lila_anak" step="0.01" class="form-control" value="{{ $layananBalita->lila_anak }}" required>
                   </div>
                   <div class="form-group">
-                    <label for="imunisasi">Jenis & Jadwal Imunisasi</label>
+                    <label for="imunisasi">Jenis Imunisasi</label>
                     <textarea name="imunisasi" class="form-control" rows="3">{{ $layananBalita->imunisasi }}</textarea>
                   </div>
                   <div class="form-group">
