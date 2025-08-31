@@ -18,4 +18,8 @@ class Bidan extends Authenticatable
     ];
 
     protected $hidden = ['password'];
+
+    protected $casts = [
+        'nik_bidan' => 'string',
+    ];
 }

@@ -12,10 +12,16 @@ class Kader extends Authenticatable
     protected $table = 'tbl_data_kader';
     protected $primaryKey = 'nik_kader';
     public $timestamps = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'nik_kader', 'nama_kader', 'username', 'password',
     ];
 
     protected $hidden = ['password'];
+
+    protected $casts = [
+        'nik_kader' => 'string',
+    ];
+    
 }

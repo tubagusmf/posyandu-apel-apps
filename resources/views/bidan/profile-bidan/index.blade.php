@@ -8,7 +8,7 @@
 			<div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-5 col-md-4">
+                        <div class="col-12 col-md-4">
                             <div class="nav flex-column nav-pills nav-secondary nav-pills-no-bd nav-pills-icons" id="v-pills-tab-with-icon" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-profile-tab-icons" data-bs-toggle="pill" href="#v-pills-profile-icons" role="tab" aria-controls="v-pills-profile-icons" aria-selected="true">
                                     <i class="far fa-user"></i>
@@ -20,7 +20,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
+                        <div class="col-12 col-md-8">
                             <div class="tab-content" id="v-pills-with-icon-tabContent">                                
                                 <div class="tab-pane fade show active" id="v-pills-profile-icons" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
                                     @if(session('success'))
